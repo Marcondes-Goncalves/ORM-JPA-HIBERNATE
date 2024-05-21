@@ -1,5 +1,7 @@
 package com.marcondes.dao;
 
+import java.util.List;
+
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 
@@ -42,5 +44,31 @@ public class DaoGeneric<T> {
     public T pesquisar(Long id, Class<T> entidade){
         T t = (T) entityManager.find(entidade, id);
         return t;
+    }
+
+    public void deletarPorId(T entidade){
+
+        Object id = HibernateUtil.getPrimaryKey(entidade);
+
+        EntityTransaction transaction = entityManager.getTransaction();
+        transaction.begin();
+
+        entityManager.createNativeQuery("DELETE FROM " + entidade.getClass().getSimpleName().toLowerCase() + " WHERE id =" + id).executeUpdate(); // deleta
+
+        transaction.commit();
+    }
+
+    @SuppressWarnings("unchecked")
+    public List<T> listar(Class<T> entidade){
+
+        EntityTransaction transaction = entityManager.getTransaction();
+        transaction.begin();
+
+        @SuppressWarnings("rawtypes")
+        List lista = entityManager.createQuery("FROM " + entidade.getName()).getResultList();
+
+        transaction.commit();
+
+        return lista;
     }
 }

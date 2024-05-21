@@ -5,6 +5,8 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
 public class HibernateUtil {
+
+    /* CLASSE RESPONSÁVEL POR LER O ARQUIVO persistence.xml e se conectar a base de dados */
     
     public static EntityManagerFactory factory = null;
 
