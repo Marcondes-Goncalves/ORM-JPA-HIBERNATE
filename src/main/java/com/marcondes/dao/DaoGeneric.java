@@ -18,4 +18,20 @@ public class DaoGeneric<T> {
         transaction.commit();
 
     }
+
+    public T pesquisar(T entidade){
+
+        Object id = HibernateUtil.getPrimaryKey(entidade);
+
+        @SuppressWarnings("unchecked")
+        T t = (T) entityManager.find(entidade.getClass(), id);
+
+        return t;
+    }
+
+    public T pesquisar(Long id, Class<T> entidade){
+
+        T t = (T) entityManager.find(entidade, id);
+        return t;
+    }
 }
