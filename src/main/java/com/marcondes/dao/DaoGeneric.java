@@ -71,4 +71,8 @@ public class DaoGeneric<T> {
 
         return lista;
     }
+
+    public EntityManager gEntityManager(){
+        return entityManager;
+    }
 }

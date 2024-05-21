@@ -89,4 +89,20 @@ public class TesteHibernate {
             System.out.println("----------------------------------------------------------------------------------");
         }
     }
+
+    @Test
+    public void testeQueryList(){
+
+        DaoGeneric<UsuarioPessoa> daoGeneric = new DaoGeneric<UsuarioPessoa>();
+
+        @SuppressWarnings("unchecked")
+        List<UsuarioPessoa> list = daoGeneric.gEntityManager().createQuery("FROM UsuarioPessoa WHERE nome = 'Marcondes'").getResultList();
+
+        for (UsuarioPessoa usuarioPessoa : list) {
+
+            System.out.println(usuarioPessoa);
+            System.err.println("--------------------------------------");
+            
+        }
+    }
 }
