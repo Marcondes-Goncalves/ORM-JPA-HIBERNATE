@@ -105,4 +105,20 @@ public class TesteHibernate {
             
         }
     }
+
+    @Test
+    public void testeQueryListMaxResult(){
+
+        DaoGeneric<UsuarioPessoa> daoGeneric = new DaoGeneric<UsuarioPessoa>();
+
+        @SuppressWarnings("unchecked")
+        List<UsuarioPessoa> list = daoGeneric.gEntityManager().createQuery("FROM UsuarioPessoa ORDER BY nome").setMaxResults(2).getResultList();
+
+        for (UsuarioPessoa usuarioPessoa : list) {
+
+            System.out.println(usuarioPessoa);
+            System.err.println("--------------------------------------");
+            
+        }
+    }
 }
