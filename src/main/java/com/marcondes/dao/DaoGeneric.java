@@ -19,18 +19,27 @@ public class DaoGeneric<T> {
 
     }
 
+    public T updateMerge(T entidade){ //salva ou atualiza
+
+        EntityTransaction transaction = entityManager.getTransaction();
+        transaction.begin();
+
+        T entidadeSalva = entityManager.merge(entidade);
+        transaction.commit();
+
+        return entidadeSalva;
+
+    }
+
     public T pesquisar(T entidade){
 
         Object id = HibernateUtil.getPrimaryKey(entidade);
-
         @SuppressWarnings("unchecked")
         T t = (T) entityManager.find(entidade.getClass(), id);
-
         return t;
     }
 
     public T pesquisar(Long id, Class<T> entidade){
-
         T t = (T) entityManager.find(entidade, id);
         return t;
     }
