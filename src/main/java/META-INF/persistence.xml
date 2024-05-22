@@ -7,6 +7,7 @@
 	<persistence-unit name="pos-java-maven-hibernate">
 		
 		<class>com.marcondes.model.UsuarioPessoa</class>
+		<class>com.marcondes.model.TelefoneUser</class>
 
 		<properties>
 			<!-- Dados de conexão com o banco -->

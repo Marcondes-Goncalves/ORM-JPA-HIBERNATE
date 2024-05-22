@@ -1,11 +1,14 @@
 package com.marcondes.model;
 
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 
 @Entity
 @NamedQueries({
@@ -25,6 +28,9 @@ public class UsuarioPessoa {
     private String login;
     private String senha;
     private int idade;
+
+    @OneToMany(mappedBy = "usuarioPessoa")
+    private List<TelefoneUser> TelefoneUser;
 
 
     public Long getId() {
@@ -83,10 +89,20 @@ public class UsuarioPessoa {
         this.idade = idade;
     }
 
+    
+
     @Override
     public String toString() {
         return "UsuarioPessoa [id=" + id + ", nome=" + nome + ", sobrenome=" + sobrenome + ", email=" + email
                 + ", login=" + login + ", senha=" + senha + ", idade=" + idade + "]";
+    }
+
+    public List<TelefoneUser> getTelefoneUser() {
+        return TelefoneUser;
+    }
+
+    public void setTelefoneUser(List<TelefoneUser> telefoneUser) {
+        TelefoneUser = telefoneUser;
     }
 
     
