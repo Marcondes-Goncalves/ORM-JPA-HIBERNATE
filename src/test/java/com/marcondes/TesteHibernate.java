@@ -5,6 +5,7 @@ import java.util.List;
 import org.junit.Test;
 
 import com.marcondes.dao.DaoGeneric;
+import com.marcondes.model.TelefoneUser;
 import com.marcondes.model.UsuarioPessoa;
 
 public class TesteHibernate {
@@ -159,5 +160,22 @@ public class TesteHibernate {
             System.out.println(usuarioPessoa);
             
         }
+    }
+
+    @SuppressWarnings("unchecked")
+    @Test
+    public void testeGravaTelefone(){
+
+        @SuppressWarnings("rawtypes")
+        DaoGeneric daoGeneric = new DaoGeneric();
+
+        UsuarioPessoa pessoa = (UsuarioPessoa) daoGeneric.pesquisar(2L, UsuarioPessoa.class);
+
+        TelefoneUser telefoneUser = new TelefoneUser();
+        telefoneUser.setTipo("celular");
+        telefoneUser.setNumero("123456789");
+        telefoneUser.setUsuarioPessoa(pessoa);
+
+        daoGeneric.salvar(telefoneUser);
     }
 }
